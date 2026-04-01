@@ -381,7 +381,7 @@ public class ConfigManager {
             return ILSPManagerService.DEX2OAT_CRASHED;
         }
     }
-
+}
     public static boolean isLogEnabled() {
         try {
             return LSPManagerServiceHolder.getService().isLogEnabled();
@@ -400,4 +400,3 @@ public class ConfigManager {
             return false;
         }
     }
-}

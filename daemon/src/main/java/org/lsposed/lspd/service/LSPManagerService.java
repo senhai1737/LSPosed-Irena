@@ -553,3 +553,12 @@ public class LSPManagerService extends ILSPManagerService.Stub {
         }
     }
 }
+    @Override
+    public boolean isLogEnabled() {
+        return ConfigManager.getInstance().isLogEnabled();
+    }
+
+    @Override
+    public void setLogEnabled(boolean enabled) {
+        ConfigManager.getInstance().setLogEnabled(enabled);
+    }

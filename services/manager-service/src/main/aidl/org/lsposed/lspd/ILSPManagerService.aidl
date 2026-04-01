@@ -26,9 +26,13 @@ interface ILSPManagerService {
 
     List<Application> getModuleScope(String packageName) = 7;
 
-    boolean isVerboseLog() = 11;
+    boolean isLogEnabled() = 11;
 
-    void setVerboseLog(boolean enabled) = 12;
+    void setLogEnabled(boolean enabled) = 12;
+
+    boolean isVerboseLog() = 13;
+
+    void setVerboseLog(boolean enabled) = 14;
 
     ParcelFileDescriptor getVerboseLog() = 16;
 

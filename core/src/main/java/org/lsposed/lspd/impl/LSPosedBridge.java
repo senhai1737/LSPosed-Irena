@@ -54,10 +54,16 @@ public class LSPosedBridge {
     }
 
     public static void log(String text) {
+        if (!org.lsposed.lspd.service.ConfigManager.getInstance().isLogEnabled()) {
+            return; // 如果日志总开关关闭，则不记录日志
+        }
         Log.i(TAG, text);
     }
 
     public static void log(Throwable t) {
+        if (!org.lsposed.lspd.service.ConfigManager.getInstance().isLogEnabled()) {
+            return; // 如果日志总开关关闭，则不记录日志
+        }
         String logStr = Log.getStackTraceString(t);
         Log.e(TAG, logStr);
     }

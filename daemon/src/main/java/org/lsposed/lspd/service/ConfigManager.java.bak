@@ -1002,16 +1002,8 @@ public class ConfigManager {
 
     public void setVerboseLog(boolean on) {
         if (BuildConfig.DEBUG) return;
-        // 如果日志总开关关闭，则不能启用详细日志
-        if (on && !logEnabled) {
-            Log.w(TAG, "Cannot enable verbose log when master log switch is off");
-            return;
-        }
-        
         var logcatService = ServiceManager.getLogcatService();
         if (on) {
-            // 确保日志服务已启动
-            logcatService.start();
             logcatService.startVerbose();
         } else {
             logcatService.stopVerbose();
@@ -1021,10 +1013,6 @@ public class ConfigManager {
     }
 
     public boolean verboseLog() {
-        // 如果日志总开关关闭，则详细日志也视为关闭
-        if (!logEnabled) {
-            return false;
-        }
         return BuildConfig.DEBUG || verboseLog;
     }
 
@@ -1229,18 +1217,6 @@ public class ConfigManager {
     public void setLogEnabled(boolean on) {
         updateModulePrefs("lspd", 0, "config", "enable_log", on);
         logEnabled = on;
-        
-        var logcatService = ServiceManager.getLogcatService();
-        if (on) {
-            // 如果启用日志总开关，启动日志服务
-            logcatService.start();
-        } else {
-            // 如果关闭日志总开关，停止日志服务并关闭详细日志
-            logcatService.stop();
-            if (verboseLog) {
-                setVerboseLog(false);
-            }
-        }
     }
 
     public boolean isLogEnabled() {

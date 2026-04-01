@@ -2,9 +2,9 @@ name: Core
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ dev ]
-    tags: [ v* ]
+#  push:
+#    branches: [ dev ]
+#    tags: [ v* ]
   pull_request:
   merge_group:
 
